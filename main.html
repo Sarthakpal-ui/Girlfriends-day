@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>С праздником, дорогая</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Montserrat&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link rel="icon" href="https://emoji.slack-edge.com/T02F06N37/heart/32.png">
+  <link rel="stylesheet" href="album.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.6.11/vue.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vuetify/2.3.0-beta.6/vuetify.min.js"></script>
+  <style>
+    body {
+      background: linear-gradient(to bottom, #f9eaff, #ffffff);
+      font-family: 'Montserrat', sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+    }
+    header {
+      text-align: center;
+      padding: 50px 20px 20px;
+    }
+    header h1 {
+      font-family: 'Bad Script', cursive;
+      font-size: 48px;
+      color: #8a00b8;
+      text-shadow: 2px 2px 4px #fff;
+      animation: fadeInHeader 2s ease-out forwards;
+    }
+    @keyframes fadeInHeader {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .reason-area {
+      position: relative;
+      width: 90vw;
+      max-width: 900px;
+      min-height: 80vh;
+      margin: 0 auto 60px;
+      background: rgba(180, 100, 255, 0.15);
+      border-radius: 25px;
+      box-shadow: 0 8px 24px rgba(139, 0, 184, 0.3);
+      padding: 30px 40px;
+      backdrop-filter: blur(8px);
+      overflow: hidden;
+    }
+    .reason {
+      position: absolute;
+      font-size: 18px;
+      font-weight: 500;
+      opacity: 0;
+      animation: fadeFloat 6s ease-in-out forwards;
+      color: #6b00a8;
+      padding: 6px 12px;
+      border-radius: 10px;
+      background: rgba(155, 82, 255, 0.15);
+      box-shadow: 0 0 8px rgba(139, 0, 184, 0.6);
+    }
+    @keyframes fadeFloat {
+      0% { opacity: 0; transform: scale(0.95); }
+      10% { opacity: 1; transform: scale(1); }
+      90% { opacity: 1; }
+      100% { opacity: 0; transform: scale(1.03); }
+    }
+  
+    .final-photo-section {
+      max-width: 700px;
+      margin: 0 auto 80px;
+      text-align: center;
+    }
+    .final-photo-section img {
+      max-width: 400px;
+      border-radius: 25px;
+      box-shadow: 0 0 50px #a55fffcc;
+      animation: pulse 5s infinite ease-in-out;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .love-button-section {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .love-button {
+      font-family: 'Press Start 2P';
+      background: #FFDCDC;
+      color: #fff;
+      font-size: 18px;
+      padding: 16px 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 20px #FFD6BA;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .love-button:hover {
+      background: #FFAAAA;
+      transform: scale(1.05);
+    }
+    .final-text {
+      font-size: 24px;
+      color: #a000c0;
+      text-align: center;
+      margin-bottom: 60px;
+      display: none;
+      animation: fadeInFinal 2s ease forwards;
+    }
+    @keyframes fadeInFinal {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+  #hearts-container {
+  pointer-events: none;
+  position: fixed;
+  left: 0; top: 0;
+  width: 100vw; height: 100vh;
+  z-index: 9999;
+  font-family: "Bad Script", cursive;
+}
+
+.heart {
+  position: absolute;
+  font-size: 2rem;
+  color: #a259ff;
+  opacity: 0.85;
+  animation: float-up 2.4s linear forwards;
+  will-change: transform, opacity;
+  user-select: none;
+  font-family: "Bad Script", cursive;
+}
+
+@keyframes float-up {
+  0% {
+    opacity: 0.85;
+    transform: translateY(0) scale(1);
+  }
+  80% {
+    opacity: 1;
+    transform: translateY(-180px) scale(1.3);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-260px) scale(1.1);
+  }
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Почему я тебя люблю</h1>
+  </header>
+
+  <audio id="bg-music" loop>
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <section class="reason-area" id="reasonArea"></section>
+
+  <div id="app">
+    <div class="container">
+      <div class="album" :class="{'album--open': isOpenedTop}">
+        <div
+          class="album__paper"
+          :style="{zIndex: isOpenedTop ? 0 : items.length + 1 }"
+          :class="{'open': isOpenedTop}"
+          @click="topOpen(isOpenedTop)">
+          <div
+            class="album__page front"
+            :style="{transform: `translateZ(0.${items.length + 1}px)`}">
+            <div>
+              <div class="album__top-title">Наши моменты</div>
+              <p class="txt-tcw">Люблю тебя</p>
+              <div class="cat-mark"></div>
+            </div>
+          </div>
+          <div class="album__page back" :style="{zIndex: 0}"></div>
+        </div>
+        <div
+          class="album__paper"
+          v-for="(page, idx) in items"
+          :key="idx + 1"
+          :style="{zIndex: page.isOpen ? idx + 1 : items.length + 1 - (idx + 1) }"
+          :class="{'open': page.isOpen}"
+          @click="idx + 1 === items.length ? reset() : open(idx, page.isOpen)">
+          <div
+            class="album__page front"
+            :style="{transform: `translateZ(0.${items.length + 1 - (idx + 1)}px)`}">
+            <div class="content">
+              <div class="content__title">{{ page.title }}</div>
+              <div class="content__img1">
+                <img :src="page.img1" />
+                <div class="content__text">{{ idx + 1 }}</div>
+              </div>
+              <div class="content__img2"><img :src="page.img2" /></div>
+              <div class="content__img3"><img :src="page.img3" /></div>
+            </div>
+          </div>
+          <div class="album__page back" :style="{zIndex: idx + 1}"></div>
+        </div>
+        <div class="album__back"></div>
+        <div class="album__bottom"></div>
+        <div class="album__shadow"></div>
+      </div>
+    </div>
+  </div>
+
+  <section class="final-photo-section">
+    <img src="us.jpg" alt="Мы вместе" />
+  </section>
+
+  <div class="love-button-section">
+    <button class="love-button" onclick="playLove()">Я люблю тебя</button>
+  </div>
+
+  <div class="final-text" id="finalText">Ты - мое все навсегда💜</div>
+
+  <div id="hearts-container"></div>
+
+  <script>
+    const reasons = [
+      "Ты улыбаешься милее всех",
+      "Ты пахнешь как уют",
+      "Ты всегда рядом",
+      "Ты веришь в меня",
+      "Ты греешь лучше всех",
+      "Ты красивая без макияжа",
+      "Ты мило материшься",
+      "Ты смеешься согревая душу",
+      "Ты мое все",
+      "Ты мое счастье",
+      "Ты заботливая",
+      "Ты настоящая",
+      "Ты делаешь меня лучше",
+      "Ты мой любимый человек",
+      "Ты мило любишь",
+      "Ты целуешься лучше всех",
+      "Ты делаешь жизнь живой",
+      "Ты мое солнышко",
+      "Ты всегда выслушаешь",
+      "Ты умеешь меня поддержать",
+      "Ты мое чудо",
+      "Ты лучше всех",
+      "Ты моя чудесная",
+      "Ты смешно сердишься",
+      "Ты умеешь удивлять",
+      "Ты всегда дашь совет",
+      "Ты освещаешь мою жизнь",
+      "Ты мило царапаешься",
+      "Ты знаешь, когда мне плохо",
+      "Ты терпишь мои глупости",
+      "Ты обнимаешь так, что не хочется отпускать",
+      "Ты самая уютная",
+      "Ты милая даже когда злишься",
+      "Ты необычно шутишь",
+      "Ты делаешь все очень мило и аккуратно",
+      "Ты моя жизнь",
+      "Ты умеешь делать праздник из обычных дней",
+      "Ты танцуешь с  душой",
+      "Ты самая комфортная",
+      "Ты вдохновляешь меня",
+      "Ты - мой лучший друг",
+      "Ты - смысл моих дней",
+      "Ты моя вечность",
+      "Ты самая необычная"
+    ];
+
+    const reasonArea = document.getElementById("reasonArea");
+
+    function createReason() {
+      const text = document.createElement("div");
+      text.className = "reason";
+      text.textContent = reasons[Math.floor(Math.random() * reasons.length)];
+      reasonArea.appendChild(text);
+      text.style.left = `${Math.random() * 80}%`;
+      text.style.top = `${Math.random() * 80}%`;
+      setTimeout(() => text.remove(), 6000);
+    }
+
+    setInterval(() => {
+      for (let i = 0; i < 2; i++) createReason();
+    }, 700);
+
+    function playLove() {
+  document.getElementById("bg-music").play();
+  document.getElementById("finalText").style.display = 'block';
+  createHeartsBurst();
+}
+
+function createHeartsBurst() {
+  const heartsContainer = document.getElementById('hearts-container');
+  const heartsCount = 30; // Number of hearts per burst
+  for (let i = 0; i < heartsCount; i++) {
+    setTimeout(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.textContent = '💜';
+      heart.style.left = (10 + Math.random() * 80) + 'vw';
+      heart.style.top = (60 + Math.random() * 20) + 'vh';
+      heart.style.fontSize = (2 + Math.random() * 2) + 'rem';
+      heart.style.transform = `rotate(${Math.random()*30-15}deg)`;
+      heartsContainer.appendChild(heart);
+      setTimeout(() => heart.remove(), 2400);
+    }, Math.random() * 700);
+  }
+}
+  </script>
+  <script src="album.js"></script>
+</body>
+</html>
