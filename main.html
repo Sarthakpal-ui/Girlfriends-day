@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>С праздником, дорогая</title>
+  <title>Happy Girlfriends Day, My Love</title>
   <link rel="icon" type="image/png" href="favicon.png">
   <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Montserrat&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
@@ -28,6 +28,12 @@
       color: #8a00b8;
       text-shadow: 2px 2px 4px #fff;
       animation: fadeInHeader 2s ease-out forwards;
+    }
+    header p {
+      margin-top: 12px;
+      color: #a000c0;
+      font-family: 'Bad Script', cursive;
+      font-size: 28px;
     }
     @keyframes fadeInHeader {
       from { opacity: 0; transform: translateY(-20px); }
@@ -150,10 +156,11 @@
 </head>
 <body>
   <header>
-    <h1>Почему я тебя люблю</h1>
+    <h1>Happy Girlfriend's Day, My Love 💜</h1>
+    <p>Why I Love You</p>
   </header>
 
-  <audio id="bg-music" loop>
+  <audio id="bg-music" autoplay loop>
     <source src="music.mp3" type="audio/mpeg" />
   </audio>
 
@@ -171,8 +178,8 @@
             class="album__page front"
             :style="{transform: `translateZ(0.${items.length + 1}px)`}">
             <div>
-              <div class="album__top-title">Наши моменты</div>
-              <p class="txt-tcw">Люблю тебя</p>
+              <div class="album__top-title">You blessed me by sending this all</div>
+              <p class="txt-tcw">I Love You</p>
               <div class="cat-mark"></div>
             </div>
           </div>
@@ -208,63 +215,63 @@
   </div>
 
   <section class="final-photo-section">
-    <img src="us.jpg" alt="Мы вместе" />
+    <img src="us.jpg" alt="Us together" />
   </section>
 
   <div class="love-button-section">
-    <button class="love-button" onclick="playLove()">Я люблю тебя</button>
+    <button class="love-button" onclick="playLove()">I Love You</button>
   </div>
 
-  <div class="final-text" id="finalText">Ты - мое все навсегда💜</div>
+  <div class="final-text" id="finalText">You are my everything, forever 💜</div>
 
   <div id="hearts-container"></div>
 
   <script>
     const reasons = [
-      "Ты улыбаешься милее всех",
-      "Ты пахнешь как уют",
-      "Ты всегда рядом",
-      "Ты веришь в меня",
-      "Ты греешь лучше всех",
-      "Ты красивая без макияжа",
-      "Ты мило материшься",
-      "Ты смеешься согревая душу",
-      "Ты мое все",
-      "Ты мое счастье",
-      "Ты заботливая",
-      "Ты настоящая",
-      "Ты делаешь меня лучше",
-      "Ты мой любимый человек",
-      "Ты мило любишь",
-      "Ты целуешься лучше всех",
-      "Ты делаешь жизнь живой",
-      "Ты мое солнышко",
-      "Ты всегда выслушаешь",
-      "Ты умеешь меня поддержать",
-      "Ты мое чудо",
-      "Ты лучше всех",
-      "Ты моя чудесная",
-      "Ты смешно сердишься",
-      "Ты умеешь удивлять",
-      "Ты всегда дашь совет",
-      "Ты освещаешь мою жизнь",
-      "Ты мило царапаешься",
-      "Ты знаешь, когда мне плохо",
-      "Ты терпишь мои глупости",
-      "Ты обнимаешь так, что не хочется отпускать",
-      "Ты самая уютная",
-      "Ты милая даже когда злишься",
-      "Ты необычно шутишь",
-      "Ты делаешь все очень мило и аккуратно",
-      "Ты моя жизнь",
-      "Ты умеешь делать праздник из обычных дней",
-      "Ты танцуешь с  душой",
-      "Ты самая комфортная",
-      "Ты вдохновляешь меня",
-      "Ты - мой лучший друг",
-      "Ты - смысл моих дней",
-      "Ты моя вечность",
-      "Ты самая необычная"
+      "Your smile is the sweetest",
+      "You smell like comfort",
+      "You are always there",
+      "You believe in me",
+      "You warm me like no one else",
+      "You are beautiful without makeup",
+      "Your little curses are adorable",
+      "Your laughter warms my soul",
+      "You are my everything",
+      "You are my happiness",
+      "You are caring",
+      "You are genuine",
+      "You make me better",
+      "You are my favorite person",
+      "The way you love is sweet",
+      "You are the best kisser",
+      "You make life feel alive",
+      "You are my sunshine",
+      "You always listen",
+      "You know how to support me",
+      "You are my miracle",
+      "You are the best",
+      "You are wonderful",
+      "You get adorably angry",
+      "You know how to surprise me",
+      "You always give good advice",
+      "You light up my life",
+      "Your little scratches are cute",
+      "You know when I am feeling down",
+      "You put up with my silliness",
+      "You hug me so I never want to let go",
+      "You are the coziest",
+      "You are sweet even when you are mad",
+      "You have a unique sense of humor",
+      "You do everything so sweetly and carefully",
+      "You are my life",
+      "You can make ordinary days feel special",
+      "You dance with your soul",
+      "You make me feel so comfortable",
+      "You inspire me",
+      "You are my best friend",
+      "You are the meaning of my days",
+      "You are my forever",
+      "You are one of a kind"
     ];
 
     const reasonArea = document.getElementById("reasonArea");
@@ -283,8 +290,14 @@
       for (let i = 0; i < 2; i++) createReason();
     }, 700);
 
+    window.addEventListener("DOMContentLoaded", () => {
+  const backgroundMusic = document.getElementById("bg-music");
+  backgroundMusic.play().catch(() => {
+    // Some browsers block autoplay until the visitor interacts with the page.
+  });
+});
+
     function playLove() {
-  document.getElementById("bg-music").play();
   document.getElementById("finalText").style.display = 'block';
   createHeartsBurst();
 }
